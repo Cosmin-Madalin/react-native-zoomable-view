@@ -2,13 +2,13 @@
 
 import React, { Component } from "react";
 import { View, PanResponder } from "react-native";
-import ReactNativeZoomableView from './ReactNativeZoomableView';
+import ReactNativeZoomableView from "./ReactNativeZoomableView";
 
 export const swipeDirections = {
   SWIPE_UP: "SWIPE_UP",
   SWIPE_DOWN: "SWIPE_DOWN",
   SWIPE_LEFT: "SWIPE_LEFT",
-  SWIPE_RIGHT: "SWIPE_RIGHT"
+  SWIPE_RIGHT: "SWIPE_RIGHT",
 };
 
 const swipeConfig = {
@@ -17,7 +17,7 @@ const swipeConfig = {
   detectSwipeUp: true,
   detectSwipeDown: true,
   detectSwipeLeft: true,
-  detectSwipeRight: true
+  detectSwipeRight: true,
 };
 
 function isValidSwipe(
@@ -33,42 +33,21 @@ function isValidSwipe(
 }
 
 class ReactNativeZoomableGestures extends React.Component {
- constructor(props, context) {
+  constructor(props, context) {
     super(props, context);
     this.swipeConfig = Object.assign(swipeConfig, props.config);
 
-    const parent = ReactNativeZoomableView.prototype.parentHandleMoveShouldSetPanResponder.call(this);
+    const parent = ReactNativeZoomableView.prototype.parentHandleMoveShouldSetPanResponder.call(
+      this
+    );
   }
 
- static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps !== prevState) {
       this.swipeConfig = Object.assign(swipeConfig, nextProps.config);
     }
   }
-/*
-
-  /!**
-   * Checks if we are in a swipe motion and if not ->
-   * @param e
-   * @param gestureState
-   * @returns {boolean|*}
-   *
-   * @private
-   *!/
-  handleMoveShouldSetPanResponder = (e, gestureState) => {
-    console.log('ICH BIN HHHH: ', e);
-    if (super.handleMoveShouldSetPanResponder(e, gestureState)) {
-      return true;
-    }
-
-    console.log('ICH MACH SAS: ', e);
-    return (
-      evt.nativeEvent.touches.length === 1 &&
-      !this._gestureIsClick(gestureState) &&
-      this._validateSwipe(gestureState)
-    )
-  }
-*/
+  /*
 
   /**
    * Checks the swipe and validates whether we should process it or not
@@ -83,7 +62,7 @@ class ReactNativeZoomableGestures extends React.Component {
       detectSwipeUp,
       detectSwipeDown,
       detectSwipeLeft,
-      detectSwipeRight
+      detectSwipeRight,
     } = this.swipeConfig;
     const swipeDirection = this._getSwipeDirection(gestureState);
     const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN } = swipeDirections;
@@ -135,7 +114,7 @@ class ReactNativeZoomableGestures extends React.Component {
       onSwipeUp,
       onSwipeDown,
       onSwipeLeft,
-      onSwipeRight
+      onSwipeRight,
     } = this.props;
     const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN } = swipeDirections;
 
